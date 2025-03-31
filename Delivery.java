@@ -27,7 +27,8 @@ public class Address {
 class Delivery {
     public static void main(String[] args) {
         Map<Address, Integer> costPerAddress = new HashMap<>();
-        Set<String> contries = new HashSet<>();
+        Set<String> countries = new HashSet<>();
+        
         costPerAddress.put(new Address("Россия", "Москва"), 200);
         costPerAddress.put(new Address("Россия", "Тула"), 350);
         costPerAddress.put(new Address("США", "Монтана"), 750);
@@ -43,7 +44,7 @@ class Delivery {
             if (country.equalsIgnoreCase("end")) {
                 break;
             }
-            contries.add(country);
+            countries.add(country);
             System.out.print("Введите город: ");
             String city = scanner.nextLine();
             System.out.print("Введите вес (кг): ");
@@ -57,10 +58,9 @@ class Delivery {
 
                 System.out.println("Стоимость доставки составит: " + cost + " руб");
                 System.out.println("Общая стоимость всех доставок: " + sumTotal + " руб");
-                System.out.println("Кол-во доставляемых стран: " + contries.size());
+                System.out.println("Кол-во доставляемых стран: " + countries.size());
 
             } else {
-
                 System.out.println("Доставки по этому адресу нет");
             }
 
