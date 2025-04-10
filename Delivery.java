@@ -1,5 +1,7 @@
 package JavaOsnova;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.*;
 
 public class Address {
@@ -26,36 +28,40 @@ public class Address {
 
 class Delivery {
     public static void main(String[] args) {
+
         Map<Address, Integer> costPerAddress = new HashMap<>();
-        Set<String> countries = new HashSet<>();
-        
+        Set<String> countries = new HashSet<String>();
         costPerAddress.put(new Address("Россия", "Москва"), 200);
         costPerAddress.put(new Address("Россия", "Тула"), 350);
         costPerAddress.put(new Address("США", "Монтана"), 750);
-        costPerAddress.put(new Address("Австралия", "Мельбурн "), 1600);
+        costPerAddress.put(new Address("Австралия", "Мельбурн"), 1600);
+        costPerAddress.put(new Address("Азербайджан", "Баку"), 1000);
 
         Scanner scanner = new Scanner(System.in);
         int sumTotal = 0;
 
         while (true) {
-            System.out.println("Заполнение нового заказа.");
+            System.out.println("\nЗаполнение нового заказа.");
             System.out.print("Введите страну: ");
             String country = scanner.nextLine();
             if (country.equalsIgnoreCase("end")) {
                 break;
             }
-            countries.add(country);
+
+
             System.out.print("Введите город: ");
             String city = scanner.nextLine();
+
             System.out.print("Введите вес (кг): ");
             int weight = scanner.nextInt();
+            scanner.nextLine();
 
             Address address = new Address(country, city);
 
             if (costPerAddress.containsKey(address)) {
+                countries.add(country);
                 int cost = weight * costPerAddress.get(address);
                 sumTotal += cost;
-
                 System.out.println("Стоимость доставки составит: " + cost + " руб");
                 System.out.println("Общая стоимость всех доставок: " + sumTotal + " руб");
                 System.out.println("Кол-во доставляемых стран: " + countries.size());
@@ -63,10 +69,6 @@ class Delivery {
             } else {
                 System.out.println("Доставки по этому адресу нет");
             }
-
-
         }
     }
-
-
 }
